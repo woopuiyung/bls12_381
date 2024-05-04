@@ -12,13 +12,13 @@ use subtle::{Choice, ConditionallySelectable, ConstantTimeEq, CtOption};
 use ff::{FieldBits, PrimeFieldBits};
 
 use crate::util::{adc, mac, sbb};
-
+use serde::{Deserialize, Serialize};
 /// Represents an element of the scalar field $\mathbb{F}_q$ of the BLS12-381 elliptic
 /// curve construction.
 // The internal representation of this type is four 64-bit unsigned
 // integers in little-endian order. `Scalar` values are always in
 // Montgomery form; i.e., Scalar(a) = aR mod q, with R = 2^256.
-#[derive(Clone, Copy, Eq)]
+#[derive(Clone, Copy, Eq, Serialize, Deserialize)]
 pub struct Scalar(pub(crate) [u64; 4]);
 
 impl fmt::Debug for Scalar {
